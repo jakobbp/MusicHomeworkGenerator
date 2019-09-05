@@ -4,12 +4,12 @@ import java.awt.Graphics2D;
 
 import jbp.notes.constants.SheetDimensions;
 
-public class HomeworkBars extends AbstractBars {
+public class GuitarHomeworkBars extends AbstractBars {
 	
 	private GCleftNoteBars noteBars;
 	private TabBars tabBars;
 	
-	public HomeworkBars() {
+	public GuitarHomeworkBars() {
 		super();
 	}
 
