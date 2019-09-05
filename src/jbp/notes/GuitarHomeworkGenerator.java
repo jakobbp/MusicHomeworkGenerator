@@ -35,13 +35,12 @@ public class GuitarHomeworkGenerator {
 		generateGuitarHomework(nPages, 0, 64, NotesUtil.generateDefaultHomeworkTypeSuffix());
 	}
 	
-	private static void generateGuitarHomework(int nPages, int nStringNotes, int nAllNotes, String typeSuffix) throws IOException {
+	private static void generateGuitarHomework(int nPages, int nStringNotes, int nAllNotes, String homeworkTypeSuffix) throws IOException {
 		BufferedImage iBuff = new BufferedImage(SheetDimensions.SHEET_A4.width, SheetDimensions.SHEET_A4.height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D gBuff = iBuff.createGraphics();
 		gBuff.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		GuitarHomeworkBars hwBars = new GuitarHomeworkBars();
-		String fileNameTemplate = "Naloga-%2$s-%1$02d.png";
 		
 		for(int pageIndex = 1; pageIndex <= nPages; pageIndex++) {
 			List<Note> notes = new ArrayList<Note>(nStringNotes+nAllNotes);
@@ -75,7 +74,7 @@ public class GuitarHomeworkGenerator {
 			}
 			
 			hwBars.draw(gBuff, notes, SheetDimensions.SHEET_A4);
-			ImageIO.write(iBuff, "PNG", new File(String.format(fileNameTemplate, pageIndex, typeSuffix)));
+			ImageIO.write(iBuff, NotesUtil.DEFAULT_OUTPUT_FILE_TYPE, new File(String.format(NotesUtil.DEFAULT_OUTPUT_FILE_NAME_TEMPLATE, pageIndex, homeworkTypeSuffix)));
 		}
 	}
 }

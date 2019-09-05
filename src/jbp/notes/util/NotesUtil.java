@@ -16,6 +16,9 @@ import jbp.notes.annotations.GeneratorMethod;
 import jbp.notes.annotations.HomeworkGenerator;
 
 public final class NotesUtil {
+	public static final String DEFAULT_OUTPUT_FILE_NAME_TEMPLATE = "Sheet-%2$s-%1$02d.png";
+	public static final String DEFAULT_OUTPUT_FILE_TYPE = "PNG";
+	
 	private static final String TYPE_KEY_DELIMITER = ":";
 	private static final String TYPE_KEY_TEMPLATE = "%s%s%s";
 	private static final String TYPE_SUFFIX_TEMPLATE = "%s%s";
