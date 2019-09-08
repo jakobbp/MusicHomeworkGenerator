@@ -27,7 +27,7 @@ public abstract class AbstractBars implements SheetDimensions {
 		}
 	}
 	
-	void drawBars(Graphics2D g, Dimension sheetDimensions) {
+	protected void drawBars(Graphics2D g, Dimension sheetDimensions) {
 		int y = SheetDimensions.MARGIN_HALF;
 		while(y < sheetDimensions.height-SheetDimensions.MARGIN_HALF) {
 			drawBarsRow(g, sheetDimensions.width-SheetDimensions.MARGIN_FULL, SheetDimensions.MARGIN_HALF, y);
@@ -35,7 +35,7 @@ public abstract class AbstractBars implements SheetDimensions {
 		}
 	}
 	
-	void drawNotes(Graphics2D g, List<Note> notes, Dimension sheetDimensions) {
+	protected void drawNotes(Graphics2D g, List<Note> notes, Dimension sheetDimensions) {
 		double noteWidth = (sheetDimensions.width-SheetDimensions.MARGIN_FULL-getNotesMargin())/16.;
 		for(int i = 0; i < notes.size(); i++) {
 			int x = (int)(SheetDimensions.MARGIN_HALF+getNotesMargin()+(i%16+0.5)*noteWidth);
@@ -46,11 +46,11 @@ public abstract class AbstractBars implements SheetDimensions {
 		}
 	}
 	
-	abstract void drawBarsRow(Graphics2D g, int width, int x, int y);
+	protected abstract void drawBarsRow(Graphics2D g, int width, int x, int y);
 	
-	abstract void drawNote(Graphics2D g, Note note, int x, int yBars);
+	protected abstract void drawNote(Graphics2D g, Note note, int x, int yBars);
 	
-	abstract int getBarsRowSpacing();
+	protected abstract int getBarsRowSpacing();
 	
-	abstract int getNotesMargin();
+	protected abstract int getNotesMargin();
 }

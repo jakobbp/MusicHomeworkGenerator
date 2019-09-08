@@ -4,13 +4,18 @@ import java.awt.Graphics2D;
 
 import jbp.notes.constants.SheetDimensions;
 
-public class GuitarHomeworkBars extends AbstractBars {
+public class NoteAndTabCompositeBars extends AbstractBars {
 	
-	private GCleftNoteBars noteBars;
+	public static NoteAndTabCompositeBars BASS_HOMEWORK_BARS = new NoteAndTabCompositeBars(NoteBars.F_CLEF_OTTAVA_BASSA_BARS, TabBars.FOUR_STRINGS_TAB_BARS);
+	public static NoteAndTabCompositeBars GUITAR_HOMEWORK_BARS = new NoteAndTabCompositeBars(NoteBars.G_CLEF_OTTAVA_BASSA_BARS, TabBars.SIX_STRINGS_TAB_BARS);
+	
+	private NoteBars noteBars;
 	private TabBars tabBars;
 	
-	public GuitarHomeworkBars() {
+	public NoteAndTabCompositeBars(NoteBars noteBars, TabBars tabBars) {
 		super();
+		this.noteBars = noteBars;
+		this.tabBars = tabBars;
 	}
 
 	@Override
@@ -35,17 +40,11 @@ public class GuitarHomeworkBars extends AbstractBars {
 		return getNoteBars().getNotesMargin();
 	}
 	
-	private GCleftNoteBars getNoteBars() {
-		if(noteBars == null) {
-			noteBars = new GCleftNoteBars();
-		}
+	private NoteBars getNoteBars() {
 		return noteBars;
 	}
 	
 	private TabBars getTabBars() {
-		if(tabBars == null) {
-			tabBars = new TabBars();
-		}
 		return tabBars;
 	}
 	

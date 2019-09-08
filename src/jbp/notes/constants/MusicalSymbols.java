@@ -1,8 +1,13 @@
 package jbp.notes.constants;
 
 public interface MusicalSymbols {
-	public static final String F_CLEFT = "\uD834\uDD22";
-	public static final String G_CLEFT = "\uD834\uDD1E";
+	public static final String C_CLEF = "\uD834\uDD21";
+	public static final String F_CLEF = "\uD834\uDD22";
+	public static final String F_CLEF_8A = "\uD834\uDD23";
+	public static final String F_CLEF_8B = "\uD834\uDD24";
+	public static final String G_CLEF = "\uD834\uDD1E";
+	public static final String G_CLEF_8A = "\uD834\uDD1F";
+	public static final String G_CLEF_8B = "\uD834\uDD20";
 	
 	public static final String FULL_NOTE = "\uD834\uDD5D";
 	public static final String HALF_NOTE = "\uD834\uDD5E";
