@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import jbp.notes.constants.SheetDimensions;
 
 public class NoteAndTabCompositeBars extends AbstractBars {
-	
 	public static NoteAndTabCompositeBars BASS_HOMEWORK_BARS = new NoteAndTabCompositeBars(NoteBars.F_CLEF_OTTAVA_BASSA_BARS, TabBars.FOUR_STRINGS_TAB_BARS);
 	public static NoteAndTabCompositeBars GUITAR_HOMEWORK_BARS = new NoteAndTabCompositeBars(NoteBars.G_CLEF_OTTAVA_BASSA_BARS, TabBars.SIX_STRINGS_TAB_BARS);
 	

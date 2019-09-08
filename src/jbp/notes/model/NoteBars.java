@@ -120,7 +120,7 @@ public class NoteBars extends AbstractBars {
 			}
 		} else if(note.getCOffset() >= getClefSettings().getHigherHelperLinesStartingCOffset()) {
 			for(int i = (note.getCOffset()-getClefSettings().getHigherHelperLinesStartingCOffset())/2; i >= 0; i--) {
-				g.fillRect(x-noteWidth/2-2, yBars-i*BAR_LINE_SPACING-1, noteWidth+4, DEFAULT_BAR_LINE_THICKNESS);
+				g.fillRect(x-noteWidth/2-2, yBars-(1+i)*BAR_LINE_SPACING+1, noteWidth+4, DEFAULT_BAR_LINE_THICKNESS);
 			}
 		}
 		g.drawString(noteSymbol, x-noteWidth/2, yBars+getClefSettings().getCYPosition()-(int)(BAR_LINE_SPACING*0.5*note.getCOffset()+0.5));

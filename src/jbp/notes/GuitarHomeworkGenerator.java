@@ -25,12 +25,12 @@ public class GuitarHomeworkGenerator {
 		generateGuitarHomework(nPages, 64, 0, NotesUtil.generateDefaultHomeworkTypeSuffix());
 	}
 	
-	@GeneratorMethod(typeId = "2", description = "Guitar homework sheets with TAB bars, where first quarter of notes correspond to empty guitar strings in standard tuning and the other notes are random.")
+	@GeneratorMethod(typeId = "2", description = "Guitar homework sheets with TAB bars, where first quarter of notes correspond to empty guitar strings in standard tuning and the other notes are random C major notes in first position.")
 	public static void generateType2GuitarHomework(int nPages) throws IOException {
 		generateGuitarHomework(nPages, 16, 48, NotesUtil.generateDefaultHomeworkTypeSuffix());
 	}
 	
-	@GeneratorMethod(typeId = "3", description = "Guitar homework sheets with TAB bars, where all notes are random.")
+	@GeneratorMethod(typeId = "3", description = "Guitar homework sheets with TAB bars, where all notes are random C major notes in first position.")
 	public static void generateType3GuitarHomework(int nPages) throws IOException {
 		generateGuitarHomework(nPages, 0, 64, NotesUtil.generateDefaultHomeworkTypeSuffix());
 	}
