@@ -1,80 +1,63 @@
 package jbp.notes;
 
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import jbp.notes.annotations.GeneratorMethod;
 import jbp.notes.annotations.HomeworkGenerator;
-import jbp.notes.constants.GuitarNoteGroups;
-import jbp.notes.constants.SheetDimensions;
-import jbp.notes.model.Note;
+import jbp.notes.constants.GuitarNoteCollections;
+import jbp.notes.model.AbstractBars;
 import jbp.notes.model.NoteAndTabCompositeBars;
 import jbp.notes.util.NotesUtil;
 
 @HomeworkGenerator("G")
-public class GuitarHomeworkGenerator {
-	@GeneratorMethod(typeId = "1", description = "Guitar homework sheets with TAB bars, where all notes correspond to empty guitar strings in standard tuning.")
-	public static void generateType1GuitarHomework(int nPages) throws IOException {
-		generateGuitarHomework(nPages, 64, 0, NotesUtil.generateDefaultHomeworkTypeSuffix());
+public class GuitarHomeworkGenerator extends AbstractHomeworkGenerator {
+	@GeneratorMethod(typeId = "FS", description = "Guitar homework sheets with TAB bars, where all notes correspond to empty guitar strings in standard tuning.")
+	public void generateFreeStringsGuitarHomework(int nPages) throws IOException {
+		List<NoteGroup> pageNoteGroups = Arrays.asList(new NoteGroup(GuitarNoteCollections.STANDARD_FREE_STRING_NOTES, 64));
+		generateHomework(nPages, pageNoteGroups, NotesUtil.generateDefaultHomeworkTypeSuffix());
 	}
 	
-	@GeneratorMethod(typeId = "2", description = "Guitar homework sheets with TAB bars, where first quarter of notes correspond to empty guitar strings in standard tuning and the other notes are random C major notes in first position.")
-	public static void generateType2GuitarHomework(int nPages) throws IOException {
-		generateGuitarHomework(nPages, 16, 48, NotesUtil.generateDefaultHomeworkTypeSuffix());
+	@GeneratorMethod(typeId = "FS1P", description = "Guitar homework sheets with TAB bars, where first quarter of notes correspond to empty guitar strings in standard tuning and the other notes are random C major notes in first position.")
+	public void generateFreeStringsAndFirstPositionGuitarHomework(int nPages) throws IOException {
+		List<NoteGroup> pageNoteGroups = Arrays.asList(	new NoteGroup(GuitarNoteCollections.STANDARD_FREE_STRING_NOTES, 16),
+														new NoteGroup(GuitarNoteCollections.FIRST_POSITION_C_DUR_NOTES, 48));
+		generateHomework(nPages, pageNoteGroups, NotesUtil.generateDefaultHomeworkTypeSuffix());
 	}
 	
-	@GeneratorMethod(typeId = "3", description = "Guitar homework sheets with TAB bars, where all notes are random C major notes in first position.")
-	public static void generateType3GuitarHomework(int nPages) throws IOException {
-		generateGuitarHomework(nPages, 0, 64, NotesUtil.generateDefaultHomeworkTypeSuffix());
+	@GeneratorMethod(typeId = "1P", description = "Guitar homework sheets with TAB bars, where all notes are random C major notes in first position.")
+	public void generateFirstPositionGuitarHomework(int nPages) throws IOException {
+		List<NoteGroup> pageNoteGroups = Arrays.asList(new NoteGroup(GuitarNoteCollections.FIRST_POSITION_C_DUR_NOTES, 64));
+		generateHomework(nPages, pageNoteGroups, NotesUtil.generateDefaultHomeworkTypeSuffix());
 	}
 	
-	private static void generateGuitarHomework(int nPages, int nStringNotes, int nAllNotes, String homeworkTypeSuffix) throws IOException {
-		BufferedImage iBuff = new BufferedImage(SheetDimensions.SHEET_A4.width, SheetDimensions.SHEET_A4.height, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D gBuff = iBuff.createGraphics();
-		gBuff.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		
-		NoteAndTabCompositeBars hwBars = NoteAndTabCompositeBars.GUITAR_HOMEWORK_BARS;
-		
-		for(int pageIndex = 1; pageIndex <= nPages; pageIndex++) {
-			List<Note> notes = new ArrayList<Note>(nStringNotes+nAllNotes);
-			
-			Note prevNote = null;
-			for(int i = 0; i < nStringNotes; i++) {
-				Note note = null;
-				while(note == null) {
-					int index = (int)(Math.random()*GuitarNoteGroups.STANDARD_FREE_STRING_NOTES.size());
-					Note candidate = GuitarNoteGroups.STANDARD_FREE_STRING_NOTES.get(index);
-					if(!candidate.equals(prevNote)) {
-						note = candidate;
-					}
-				}
-				notes.add(note);
-				prevNote = note;
-			}
-			
-			prevNote = null;
-			for(int i = 0; i < nAllNotes; i++) {
-				Note note = null;
-				while(note == null) {
-					int index = (int)(Math.random()*GuitarNoteGroups.FIRST_POSITION_C_DUR_NOTES.size());
-					Note candidate = GuitarNoteGroups.FIRST_POSITION_C_DUR_NOTES.get(index);
-					if(!candidate.equals(prevNote)) {
-						note = candidate;
-					}
-				}
-				notes.add(note);
-				prevNote = note;
-			}
-			
-			hwBars.draw(gBuff, notes, SheetDimensions.SHEET_A4);
-			ImageIO.write(iBuff, NotesUtil.DEFAULT_OUTPUT_FILE_TYPE, new File(String.format(NotesUtil.DEFAULT_OUTPUT_FILE_NAME_TEMPLATE, pageIndex, homeworkTypeSuffix)));
-		}
+	@GeneratorMethod(typeId = "3P", description = "Guitar homework sheets with TAB bars, where all notes are random C major notes in third position.")
+	public void generateThirdPositionGuitarHomework(int nPages) throws IOException {
+		List<NoteGroup> pageNoteGroups = Arrays.asList(new NoteGroup(GuitarNoteCollections.THIRD_POSITION_C_DUR_NOTES, 64));
+		generateHomework(nPages, pageNoteGroups, NotesUtil.generateDefaultHomeworkTypeSuffix());
+	}
+	
+	@GeneratorMethod(typeId = "5P", description = "Guitar homework sheets with TAB bars, where all notes are random C major notes in fifth position.")
+	public void generateFifthPositionGuitarHomework(int nPages) throws IOException {
+		List<NoteGroup> pageNoteGroups = Arrays.asList(new NoteGroup(GuitarNoteCollections.FIFTH_POSITION_C_DUR_NOTES, 64));
+		generateHomework(nPages, pageNoteGroups, NotesUtil.generateDefaultHomeworkTypeSuffix());
+	}
+	
+	@GeneratorMethod(typeId = "7P", description = "Guitar homework sheets with TAB bars, where all notes are random C major notes in seventh position.")
+	public void generateSeventhPositionGuitarHomework(int nPages) throws IOException {
+		List<NoteGroup> pageNoteGroups = Arrays.asList(new NoteGroup(GuitarNoteCollections.SEVENTH_POSITION_C_DUR_NOTES, 64));
+		generateHomework(nPages, pageNoteGroups, NotesUtil.generateDefaultHomeworkTypeSuffix());
+	}
+	
+	@GeneratorMethod(typeId = "9P", description = "Guitar homework sheets with TAB bars, where all notes are random C major notes in ninth position.")
+	public void generateNinthPositionGuitarHomework(int nPages) throws IOException {
+		List<NoteGroup> pageNoteGroups = Arrays.asList(new NoteGroup(GuitarNoteCollections.NINTH_POSITION_C_DUR_NOTES, 64));
+		generateHomework(nPages, pageNoteGroups, NotesUtil.generateDefaultHomeworkTypeSuffix());
+	}
+	
+	@Override
+	protected AbstractBars getHomeworkBars() {
+		return NoteAndTabCompositeBars.GUITAR_HOMEWORK_BARS;
 	}
 }
